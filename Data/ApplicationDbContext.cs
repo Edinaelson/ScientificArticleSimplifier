@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ScientificArticleSimplifier.Models;
 
 namespace ScientificArticleSimplifier.Data
 {
@@ -9,5 +10,9 @@ namespace ScientificArticleSimplifier.Data
             : base(options)
         {
         }
+
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Request> Requests { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
