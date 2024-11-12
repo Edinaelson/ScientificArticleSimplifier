@@ -230,6 +230,10 @@ namespace ScientificArticleSimplifier.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -249,7 +253,7 @@ namespace ScientificArticleSimplifier.Data.Migrations
 
                     b.HasIndex("RequestId");
 
-                    b.ToTable("Posts", (string)null);
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("ScientificArticleSimplifier.Models.Request", b =>
@@ -276,7 +280,7 @@ namespace ScientificArticleSimplifier.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Requests", (string)null);
+                    b.ToTable("Requests");
                 });
 
             modelBuilder.Entity("ScientificArticleSimplifier.Models.User", b =>
@@ -299,7 +303,7 @@ namespace ScientificArticleSimplifier.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

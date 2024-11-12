@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ScientificArticleSimplifier")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4edaf430d1d5af8744f87a40646ae76e58cd48af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f3351ee6360092a44c820057b144ae358b4747d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ScientificArticleSimplifier")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ScientificArticleSimplifier")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
