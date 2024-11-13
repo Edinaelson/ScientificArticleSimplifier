@@ -12,7 +12,7 @@ namespace ScientificArticleSimplifier.Services
             using var httpClient = new HttpClient();
 
             var reader = File.ReadAllText("./Prompts/Prompt.txt")??"";
-            var prompt = string.Format(reader, question);
+            var prompt = reader.Replace("{0}",question);
 
             var url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={apiKey}";
 

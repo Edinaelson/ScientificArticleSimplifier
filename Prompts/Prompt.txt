@@ -2,7 +2,9 @@
 
 Considerando o input do usuario escreva um artigo resumido, contendo titulo, descricao e o proprio conteudo.
 
-traga somente texto puro sem formatacao. e traga no formato json para meu javaScript ler.
+traga somente texto puro sem formatacao.
 
 input do usario: {0}
-output: 
+segue esse schema json:
+
+{"titulo": "string","descricao": "string","conteudo": "string"}

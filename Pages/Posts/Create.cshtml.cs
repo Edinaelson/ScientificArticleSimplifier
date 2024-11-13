@@ -26,11 +26,11 @@ namespace ScientificArticleSimplifier.Pages.Posts
             return Page();
         }
 
-        public IActionResult OnGetGemini(string text)
+        public async Task<IActionResult> OnGetGemini(string text)
         {
-            var result = LlmServices.GenerateContentAsync(text);
+            var result = await LlmServices.GenerateContentAsync(text);
 
-            return new JsonResult(new {result});
+            return new JsonResult( new { result });
         }
 
         [BindProperty]

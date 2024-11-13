@@ -62,7 +62,7 @@
 
             try {
                 // Fazendo a requisição para o backend
-                const response = await fetch(`/Posts/Create?handler=Gemini&text=${encodeURIComponent(title)}`, {
+                const response = await fetch(`?handler=Gemini&text=${encodeURIComponent(title)}`, {
                     method: 'GET',
                 });
 
@@ -73,11 +73,11 @@
                     console.log(data);
 
                     // Extrai a string JSON aninhada, remove as marcações Markdown e substitui quebras de linha e outros caracteres de controle
-                    let nestedJsonString = data.result?.result?.replace(/^```json\s*/, '').replace(/```$/, '') || '';
-                    nestedJsonString = nestedJsonString.replace(/[\r\n\t]+/g, ' '); // Remove quebras de linha e tabulações
+                    //let nestedJsonString = data.result?.result?.replace(/^```json\s*/, '').replace(/```$/, '') || '';
+                    //nestedJsonString = nestedJsonString.replace(/[\r\n\t]+/g, ' '); // Remove quebras de linha e tabulações
 
                     // Faz o parse do JSON limpo
-                    const parsedResult = JSON.parse(nestedJsonString);
+                    const parsedResult = JSON.parse(data.result);
 
                     titleInput.value = parsedResult.titulo || title;
                     descriptionInput.value = parsedResult.descricao || '';
