@@ -8,7 +8,7 @@ namespace ScientificArticleSimplifier.Services
     {
         public static async Task<string> GenerateContentAsync(string question)
         {
-            var apiKey = "AIzaSyDqTa1f4-eY3DSY8v8b9upVojqFDB-ug4E";
+            var apiKey = File.ReadAllText($"C:/dev/Estudo de MVC core/ScientificArticleSimplifier/apiGoogle.txt");
             using var httpClient = new HttpClient();
 
             var reader = File.ReadAllText("./Prompts/Prompt.txt")??"";
