@@ -38,26 +38,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dev/Estudo de MVC core/ScientificArticleSimplifier/ScientificArticleSimplifier/Pages/Posts/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9zdHNcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/dev/Estudo de MVC core/ScientificArticleSimplifier/ScientificArticleSimplifier/Pages/Posts/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9zdHNcRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/dev/Estudo de MVC core/ScientificArticleSimplifier/ScientificArticleSimplifier/Pages/Posts/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9zdHNcRGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/dev/Estudo de MVC core/ScientificArticleSimplifier/ScientificArticleSimplifier/Pages/Posts/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9zdHNcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/dev/Estudo de MVC core/ScientificArticleSimplifier/ScientificArticleSimplifier/Pages/Posts/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9zdHNcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/dev/Estudo de MVC core/ScientificArticleSimplifier/ScientificArticleSimplifier/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -68,6 +48,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/dev/Estudo de MVC core/ScientificArticleSimplifier/ScientificArticleSimplifier/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/dev/Estudo de MVC core/ScientificArticleSimplifier/ScientificArticleSimplifier/Pages/_Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/dev/Estudo de MVC core/ScientificArticleSimplifier/ScientificArticleSimplifier/Pages/_ViewImports.cshtml]
