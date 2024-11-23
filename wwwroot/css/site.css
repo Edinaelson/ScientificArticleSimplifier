@@ -1,22 +1,53 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
+.form-control {
+    border: none; /* Remove bordas padrão */
+    border-bottom: 1px solid #cccccc; /* Adiciona apenas a borda inferior */
+    border-radius: 0; /* Remove bordas arredondadas */
+    outline: none; /* Remove o contorno padrão */
+    box-shadow: none; /* Remove sombras padrão */
+    transition: border-color 0.3s ease; /* Efeito suave na mudança de cor */
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Cor da borda inferior no foco */
+    outline: none; /* Garante que o contorno padrão seja removido */
+    -webkit-box-shadow: none; /* Remove sombras para navegadores baseados no WebKit */
+    box-shadow: none; /* Remove sombras para outros navegadores */
+}
+
+#postTitleFeedback, #postDescriptionFeedback, #postContentFeedback {
+    position: fixed;
+    top: 20px; /* Distância do topo */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    z-index: 1050; /* Garante que o feedback fique sobre outros elementos */
+    font-size: 1rem; /* Ajuste o tamanho da fonte conforme necessário */
+    background-color: rgba(40, 167, 69, 0.9); /* Cor de fundo verde forte */
+    color: white; /* Cor do texto branco */
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+}
+

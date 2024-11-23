@@ -5,50 +5,125 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Gerar Postagem</h2>
+<div class="container align-self-center d-flex justify-content-center">
+    <h2>Gerar Postagem</h2>
+</div>
+
 
 <hr />
-<div class="row">
+<div class="row container align-self-center d-flex justify-content-center">
     <div class="col-md-8">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-  
-            <div class="form-group">
+
+            <div class="form-group position-relative">
                 <label asp-for="Post.Title" class="control-label"></label>
-                <input asp-for="Post.Title" class="form-control" />
+
+                <div class="input-group">
+                    <input asp-for="Post.Title" id="postTitle" class="form-control" placeholder="Digite o título" />
+
+                    <button type="button" class="btn btn-outline-primary" id="copyButton" onclick="copyToClipboard('postTitle')">
+                        <i class="bi bi-copy">copiar</i> <!-- Ícone do Bootstrap -->
+                    </button>
+                </div>
+               <small id="postTitleFeedback" style="display: none;">Título copiado!</small>
+
                 <span asp-validation-for="Post.Title" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Post.Description" class="control-label"></label>
-                <input asp-for="Post.Description" class="form-control" />
-                <span asp-validation-for="Post.Description" class="text-danger"></span>
+
+            <div style="display: none" id="ocultar">
+                <div class="form-group">
+                    <label asp-for="Post.Description" class="control-label"></label>
+
+                    <div class="input-group">
+                        <input asp-for="Post.Description" class="form-control" id="postDescription" />
+                        <button type="button" class="btn btn-outline-primary" id="copyButton" onclick="copyToClipboard('postDescription')">
+                            <i class="bi bi-copy">copiar</i> <!-- Ícone do Bootstrap -->
+                        </button>
+                    </div>
+                    <small id="postDescriptionFeedback" style="display: none;">Descrição copiada!</small>
+
+                    <span asp-validation-for="Post.Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Post.Content" class="control-label"></label>
+                    <div class="d-flex">
+                        <textarea asp-for="Post.Content" class="form-control flex-grow-1 editor" id="postContent" rows="4"></textarea>
+                        <!-- Botão com a classe btn-sm para tamanho pequeno -->
+                        <button type="button" class="btn btn-outline-primary btn-sm ms-2" id="copyButton" onclick="copyToClipboard('postContent')">
+                            <i class="bi bi-copy"> Copiar</i>
+                        </button>
+                    </div>
+                    <small id="postContentFeedback" style="display: none;">Conteúdo copiado!</small>
+                    <span asp-validation-for="Post.Content" class="text-danger"></span>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <label asp-for="Post.Path" class="control-label"></label>
+                    <input asp-for="Post.Path" class="form-control" />
+                    <span asp-validation-for="Post.Path" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Post.Content" class="control-label"></label>
-                <textarea asp-for="Post.Content" class="form-control" id="editor"></textarea>
-                <span asp-validation-for="Post.Content" class="text-danger"></span>
+
+            <div class="d-flex justify-content-center align-items-center mt-4">
+                <div class="spinner-grow" style="width: 3rem; height: 3rem; display: none;" role="status" id="carregando">
+                    <span class="sr-only"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Post.Path" class="control-label"></label>
-                <input asp-for="Post.Path" class="form-control" />
-                <span asp-validation-for="Post.Path" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Gerar" class="btn btn-primary" />
-            </div>
+
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Voltar a lista</a>
-</div>
 
 <script>
+
+    function copyToClipboard(fieldId) {
+        const field = document.getElementById(fieldId);
+        const feedback = document.getElementById(`${fieldId}Feedback`);
+
+        if (!field) return;
+
+        // Seleciona o texto e copia
+        if (field.tagName === 'TEXTAREA' || field.tagName === 'INPUT') {
+            field.select();
+            field.setSelectionRange(0, 99999); // Compatibilidade com dispositivos móveis
+        }
+
+        navigator.clipboard.writeText(field.value)
+            .then(() => {
+                // Exibe a mensagem de feedback
+                feedback.style.display = 'inline';
+
+                // Oculta a mensagem após 2 segundos
+                setTimeout(() => {
+                    feedback.style.display = 'none';
+                }, 2000);
+            })
+            .catch(() => {
+                alert('Erro ao copiar o conteúdo!');
+            });
+    }
+
+
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+
+    //$("#descricao").hide();
+    //$("#conteudo").hide();
+
     document.addEventListener('DOMContentLoaded', () => {
         const titleInput = document.querySelector('input[name="Post.Title"]');
         const descriptionInput = document.querySelector('input[name="Post.Description"]');
-        const contentInput = document.querySelector('#editor');
+        const contentInput = document.querySelector('.editor');
 
         // Variável para armazenar a instância do CKEditor
         let editorInstance;
@@ -56,6 +131,16 @@
         // Função para buscar dados baseados no título
         async function fetchDescriptionAndContent() {
             const title = titleInput.value;
+
+            console.log("Titulo",title);
+            
+            if (!title) {
+                $("#ocultar").hide();
+            }
+
+            if (title) {
+                $("#carregando").show();
+            }
 
             // Se o título estiver vazio, não faça nada
             if (!title) return;
@@ -67,14 +152,15 @@
                 });
 
                 if (response.ok) {
+
+                    $("#carregando").hide();
+                    
+                    $("#ocultar").show();
+
                     const data = await response.json();
 
                     // Imprimir o JSON retornado para ver como ele está estruturado
                     console.log(data);
-
-                    // Extrai a string JSON aninhada, remove as marcações Markdown e substitui quebras de linha e outros caracteres de controle
-                    //let nestedJsonString = data.result?.result?.replace(/^```json\s*/, '').replace(/```$/, '') || '';
-                    //nestedJsonString = nestedJsonString.replace(/[\r\n\t]+/g, ' '); // Remove quebras de linha e tabulações
 
                     // Faz o parse do JSON limpo
                     const parsedResult = JSON.parse(data.result);
@@ -116,5 +202,7 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
 }
+
 
