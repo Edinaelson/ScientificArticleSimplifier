@@ -51,3 +51,9 @@ body {
     display: none;
 }
 
+
+#postSearch {
+    width: 300px; /* Defina o tamanho do input como necessário */
+    text-align: center; /* Centraliza o texto dentro do input */
+}
+

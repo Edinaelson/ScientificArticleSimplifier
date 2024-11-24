@@ -5,35 +5,77 @@
     ViewData["Title"] = "Create";
 }
 
+<script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <div class="container align-self-center d-flex justify-content-center">
-    <h2>Gerar Postagem</h2>
+    <h2>Gerar Postagem com IA</h2>
 </div>
 
+<hr style="visibility: hidden;" />
 
-<hr />
+<div class="position-relative">
+    <!-- Seção de Exportar fixada -->
+    <div class="position-absolute top-0 end-0 text-center p-3" style="z-index: 1;">
+        <h6 class="mb-2">Exportar</h6>
+        <button type="button" class="btn btn-primary me-2" onclick="salvarPdf()">PDF</button>
+        <button type="button" class="btn btn-primary">TXT</button>
+
+        <!-- Campo para a imagem -->
+        <div class="mt-3">
+            <h6>Imagem</h6>
+            <div class="border p-2 rounded" style="width: 200px; height: 200px; overflow: hidden; text-align: center;">
+                <img id="imagePreview" src="https://i.pinimg.com/736x/ef/64/95/ef6495facec4fbc7d701ad98295dfb96.jpg"
+                     alt="Imagem guardada"
+                     class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row container align-self-center d-flex justify-content-center">
     <div class="col-md-8">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group position-relative">
-                <label asp-for="Post.Title" class="control-label"></label>
 
                 <div class="input-group">
-                    <input asp-for="Post.Title" id="postTitle" class="form-control" placeholder="Digite o título" />
-
-                    <button type="button" class="btn btn-outline-primary" id="copyButton" onclick="copyToClipboard('postTitle')">
-                        <i class="bi bi-copy">copiar</i> <!-- Ícone do Bootstrap -->
+                    <input id="postSearch" class="form-control" placeholder="Pesquisar" />
+                   
+                    <!--
+                    <button type="button" class="btn btn-outline-primary" onclick="pesquisar()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                        </svg>
                     </button>
-                </div>
-               <small id="postTitleFeedback" style="display: none;">Título copiado!</small>
+                    -->
 
-                <span asp-validation-for="Post.Title" class="text-danger"></span>
+                </div>
+               
+               
             </div>
 
-            <div style="display: none" id="ocultar">
+            <div style="display: non" id="ocultar">
+
+                <div class="form-group position-relative">
+                   
+                    <label asp-for="Post.Title" class="control-label h6"></label>
+                    <div class="input-group">
+                        
+                        <input asp-for="Post.Title" id="postTitle" class="form-control"/>
+
+                        <button type="button" class="btn btn-outline-primary" id="copyButton" onclick="copyToClipboard('postTitle')">
+                            <i class="bi bi-copy">copiar</i> <!-- Ícone do Bootstrap -->
+                        </button>
+                    </div>
+                    <small id="postTitleFeedback" style="display: none;">Título copiado!</small>
+
+                    <span asp-validation-for="Post.Title" class="text-danger"></span>
+                </div>
+
                 <div class="form-group">
-                    <label asp-for="Post.Description" class="control-label"></label>
+                    <label asp-for="Post.Description" class="control-label h6"></label>
 
                     <div class="input-group">
                         <input asp-for="Post.Description" class="form-control" id="postDescription" />
@@ -47,20 +89,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Post.Content" class="control-label"></label>
+                    <label asp-for="Post.Content" class="control-label h6"></label>
                     <div class="d-flex">
                         <textarea asp-for="Post.Content" class="form-control flex-grow-1 editor" id="postContent" rows="4"></textarea>
                         <!-- Botão com a classe btn-sm para tamanho pequeno -->
-                        <button type="button" class="btn btn-outline-primary btn-sm ms-2" id="copyButton" onclick="copyToClipboard('postContent')">
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="copyButton" onclick="copyToClipboard('postContent')">
                             <i class="bi bi-copy"> Copiar</i>
                         </button>
                     </div>
                     <small id="postContentFeedback" style="display: none;">Conteúdo copiado!</small>
                     <span asp-validation-for="Post.Content" class="text-danger"></span>
                 </div>
-
-
-
 
                 <div class="form-group">
                     <label asp-for="Post.Path" class="control-label"></label>
@@ -80,7 +119,83 @@
 </div>
 
 
+
 <script>
+
+    const titleInput = document.querySelector('#postSearch');
+    const title = document.querySelector('input[name="Post.Title"]');
+    const descriptionInput = document.querySelector('input[name="Post.Description"]');
+    const contentInput = document.querySelector('.editor');
+
+    // Variável para armazenar a instância do CKEditor
+    let editorInstance;
+
+    // Vincula a função ao botão de exportação PDF
+    const btnPdf = document.querySelector("button[onclick='salvarPdf()']");
+    if (btnPdf) {
+        console.log("Botão de exportação encontrado!");
+        btnPdf.addEventListener('click', salvarPdf);
+    } else {
+        console.log("Botão de exportação não encontrado.");
+    }
+
+    // Executa a função ao mudar o título
+    titleInput.addEventListener('change', fetchDescriptionAndContent);
+
+    // Inicializando o CKEditor
+    ClassicEditor
+        .create(contentInput)
+        .then(editor => {
+            editorInstance = editor; // Armazena a instância do editor
+        })
+        .catch(error => {
+            console.error('Erro ao iniciar o CKEditor:', error);
+        });
+
+
+        // Função para exportar o conteúdo como PDF
+        async function salvarPdf() {
+            // Captura os valores dos campos de entrada
+            const title = document.getElementById('postTitle').value;
+            const description = document.getElementById('postDescription').value;
+            const content = document.getElementById('postContent').value;
+
+            // Verifica se os dados estão preenchidos
+            if (!title || !description || !content) {
+                alert("Todos os campos (Título, Descrição e Conteúdo) devem ser preenchidos antes de exportar!");
+                return;
+            }
+
+            console.log("Título:", title);
+            console.log("Descrição:", description);
+            console.log("Conteúdo:", content);
+
+            // Criar um documento PDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Adicionar título ao PDF
+            doc.setFontSize(18);
+            doc.text(title, 10, 20);
+
+            // Adicionar descrição ao PDF
+            doc.setFontSize(14);
+            doc.text("Descrição:", 10, 40);
+            doc.setFontSize(12);
+            doc.text(description, 10, 50);
+
+            // Adicionar conteúdo ao PDF
+            doc.setFontSize(14);
+            doc.text("Conteúdo:", 10, 70);
+            doc.setFontSize(12);
+
+            // Quebra automática de linhas para o conteúdo longo
+            const contentLines = doc.splitTextToSize(content, 180); // Ajuste a largura das linhas
+            doc.text(contentLines, 10, 80);
+
+            // Salvar o PDF com um nome padrão
+            doc.save('postagem.pdf');
+        }
 
     function copyToClipboard(fieldId) {
         const field = document.getElementById(fieldId);
@@ -109,45 +224,26 @@
             });
     }
 
-
-
-</script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-<script>
-
-    //$("#descricao").hide();
-    //$("#conteudo").hide();
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const titleInput = document.querySelector('input[name="Post.Title"]');
-        const descriptionInput = document.querySelector('input[name="Post.Description"]');
-        const contentInput = document.querySelector('.editor');
-
-        // Variável para armazenar a instância do CKEditor
-        let editorInstance;
-
         // Função para buscar dados baseados no título
         async function fetchDescriptionAndContent() {
-            const title = titleInput.value;
+            const titleValue = titleInput.value;
 
-            console.log("Titulo",title);
+            console.log("Titulo:",titleValue);
             
-            if (!title) {
+            if (!titleValue) {
                 $("#ocultar").hide();
             }
 
-            if (title) {
+            if (titleValue) {
                 $("#carregando").show();
             }
 
             // Se o título estiver vazio, não faça nada
-            if (!title) return;
+            if (!titleValue) return;
 
             try {
                 // Fazendo a requisição para o backend
-                const response = await fetch(`?handler=Gemini&text=${encodeURIComponent(title)}`, {
+                const response = await fetch(`?handler=Gemini&text=${encodeURIComponent(titleValue)}`, {
                     method: 'GET',
                 });
 
@@ -165,9 +261,10 @@
                     // Faz o parse do JSON limpo
                     const parsedResult = JSON.parse(data.result);
 
-                    titleInput.value = parsedResult.titulo || title;
+                    title.value = parsedResult.titulo || '';
                     descriptionInput.value = parsedResult.descricao || '';
                     contentInput.value = parsedResult.conteudo || '';
+                    titleInput.value = '';
 
                     // Usando o CKEditor para definir o conteúdo no editor
                     if (editorInstance) {
@@ -182,27 +279,9 @@
             }
         }
 
-        // Executa a função ao mudar o título
-        titleInput.addEventListener('change', fetchDescriptionAndContent);
-
-        // Inicializando o CKEditor
-        ClassicEditor
-            .create(contentInput)
-            .then(editor => {
-                editorInstance = editor; // Armazena a instância do editor
-            })
-            .catch(error => {
-                console.error('Erro ao iniciar o CKEditor:', error);
-            });
-
-    });
 </script>
-
-<script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     
 }
-
-
