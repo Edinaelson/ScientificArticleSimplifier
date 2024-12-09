@@ -23,29 +23,29 @@ body {
 
 
 .form-control {
-    /* /border: none; /* Remove bordas padrão */
+    /* /border: none; /* Remove bordas padrï¿½o */
     border-bottom: 1px solid #cccccc;/* Adiciona apenas a borda inferior */
     border: 1px solid #cccccc;
     border-radius: 20px; /* Remove bordas arredondadas */
-    outline: none;  /* Remove o contorno padrão */
-    box-shadow: none; /* Remove sombras padrão */
-    transition: border-color 0.3s ease; /* Efeito suave na mudança de cor */
+    outline: none;  /* Remove o contorno padrï¿½o */
+    box-shadow: none; /* Remove sombras padrï¿½o */
+    transition: border-color 0.3s ease; /* Efeito suave na mudanï¿½a de cor */
 }
 
 .form-control:focus {
     border-color: #007bff; /* Cor da borda inferior no foco */
-    outline: none; /* Garante que o contorno padrão seja removido */
+    outline: none; /* Garante que o contorno padrï¿½o seja removido */
     -webkit-box-shadow: none; /* Remove sombras para navegadores baseados no WebKit */
     box-shadow: none; /* Remove sombras para outros navegadores */
 }
 
 #postTitleFeedback, #postDescriptionFeedback, #postContentFeedback {
     position: fixed;
-    top: 20px; /* Distância do topo */
+    top: 20px; /* Distï¿½ncia do topo */
     left: 50%;
     transform: translateX(-50%); /* Centraliza horizontalmente */
     z-index: 1050; /* Garante que o feedback fique sobre outros elementos */
-    font-size: 1rem; /* Ajuste o tamanho da fonte conforme necessário */
+    font-size: 1rem; /* Ajuste o tamanho da fonte conforme necessï¿½rio */
     background-color: rgba(40, 167, 69, 0.9); /* Cor de fundo verde forte */
     color: white; /* Cor do texto branco */
     padding: 10px 20px;
@@ -55,13 +55,13 @@ body {
 
 
 #postSearch {
-    width: 300px; /* Defina o tamanho do input como necessário */
+    width: 300px; /* Defina o tamanho do input como necessï¿½rio */
     text-align: center; /* Centraliza o texto dentro do input */
     border: none;
     border-bottom: 1px solid #cccccc; /* Adiciona apenas a borda inferior */
     border-radius: 0px;
-    border-color: #007bff; /* Cor da borda inferior no foco */
-    outline: none; /* Garante que o contorno padrão seja removido */
+    border-color: #667eea; /* Cor da borda inferior no foco */
+    outline: none; /* Garante que o contorno padrï¿½o seja removido */
     -webkit-box-shadow: none; /* Remove sombras para navegadores baseados no WebKit */
     box-shadow: none; /* Remove sombras para outros navegadores */
 }
@@ -74,3 +74,8 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+input::placeholder {
+    color: red;
+}
+
