@@ -8,9 +8,24 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<div class="container align-self-center d-flex justify-content-center">
-    <h2 class="gradient-custom">Gerar Postagem com IA</h2>
-</div>
+<style>
+    #meioDaTela {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 100%; /* Ajustável conforme necessário */
+        max-width: 400px; /* Ajustável conforme necessário */
+    }
+
+    #colocarNoFinalDapagina {
+      
+       
+    }
+
+</style>
+
 
 <hr style="visibility: hidden;" />
 
@@ -19,10 +34,22 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <div class="input-group">
-                    <input id="postSearch" class="form-control" placeholder="Pesquisar" />
+            <div class="form-group" id="meioDaTela">
+
+                <div class="align-self-center d-flex justify-content-center">
+                    <h2 class="gradient-custom" style="padding-bottom: 45px;">Gerar Postagem com IA</h2>
                 </div>
+
+                <div class="input-group" id="colocarNoFinalDapagina">
+                    <input id="postSearch" class="form-control" placeholder="Informe o título para a IA gerar o conteúdo" />
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center mt-4 gradient-custom">
+                    <div class="spinner-grow" style="width: 3rem; height: 3rem; display: none;" role="status" id="carregando">
+                        <span class="sr-only"></span>
+                    </div>
+                </div>
+
             </div>
 
             <div style="display: none" id="ocultar">
@@ -93,12 +120,6 @@
                     </div>
                 </div>
 
-            </div>
-
-            <div class="d-flex justify-content-center align-items-center mt-4 gradient-custom">
-                <div class="spinner-grow" style="width: 3rem; height: 3rem; display: none;" role="status" id="carregando">
-                    <span class="sr-only"></span>
-                </div>
             </div>
 
         </form>
@@ -235,7 +256,7 @@
                 });
 
                 if (response.ok) {
-
+                    
                     $("#carregando").hide();
                     
                     $("#ocultar").show();
