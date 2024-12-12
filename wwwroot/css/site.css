@@ -75,7 +75,62 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-input::placeholder {
-    color: red;
+
+/* Estilos gerais para telas maiores */
+@media (min-width: 992px) {
+    .container-fluid {
+        padding: 2rem 5rem; /* Aumenta a margem para telas grandes */
+    }
+
+    h5 {
+        font-size: 1.8rem;
+    }
+
+    textarea {
+        min-height: 100px;
+    }
+
+    .btn {
+        font-size: 1.1rem;
+        padding: 10px 20px;
+    }
+}
+
+/* Para telas médias (tablets e desktops pequenos) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .container-fluid {
+        padding: 2rem;
+    }
+
+    .form-control {
+        font-size: 1rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 767px) {
+    h5 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .btn {
+        width: 100%; /* Botões em largura total */
+        margin-top: 10px;
+    }
+
+    textarea {
+        min-height: 120px;
+    }
+
+    .spinner-grow {
+        width: 2rem;
+        height: 2rem; /* Spinner menor */
+    }
 }
 

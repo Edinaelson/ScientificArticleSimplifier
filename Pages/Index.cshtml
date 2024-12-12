@@ -8,39 +8,20 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<style>
-    #meioDaTela {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        width: 100%; /* Ajustável conforme necessário */
-        max-width: 400px; /* Ajustável conforme necessário */
-    }
-
-    #colocarNoFinalDapagina {
-      
-       
-    }
-
-</style>
-
-
 <hr style="visibility: hidden;" />
 
-<div class="row container align-self-center d-flex justify-content-center">
+<div class="row container-fluid align-self-center d-flex justify-content-center">
     <div class="col-md-8">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group" id="meioDaTela">
+            <div class="form-group" id="FinalDaPagina">
 
                 <div class="align-self-center d-flex justify-content-center">
-                    <h2 class="gradient-custom" style="padding-bottom: 45px;">Gerar Postagem com IA</h2>
+                    <h5 class="gradient-custom">Gerar Postagem com IA</h5>
                 </div>
 
-                <div class="input-group" id="colocarNoFinalDapagina">
+                <div class="input-group">
                     <input id="postSearch" class="form-control" placeholder="Informe o título para a IA gerar o conteúdo" />
                 </div>
 
@@ -105,18 +86,9 @@
                         <h6 class="mb-3 text-center">Exportar</h6>
                         <div class="d-flex flex-wrap justify-content-center mb-3">
                             <button type="button" class="btn btn-primary me-2 mb-2" onclick="salvarPdf()" style="border-radius: 20px;">PDF</button>
-                            <button type="button" class="btn btn-primary mb-2" style="border-radius: 20px;">TXT</button>
+        
                         </div>
-
-                        <!-- Campo para a imagem -->
-                        <h6 class="text-center">Imagem</h6>
-
-                        <div class="border p-2 rounded d-flex justify-content-center align-items-center"
-                             style="width: 100%; max-width: 200px; height: auto; overflow: hidden;">
-                            <img id="imagePreview" src="https://i.pinimg.com/736x/ef/64/95/ef6495facec4fbc7d701ad98295dfb96.jpg"
-                                 alt="Imagem guardada"
-                                 class="img-fluid" />
-                        </div>
+                       
                     </div>
                 </div>
 
