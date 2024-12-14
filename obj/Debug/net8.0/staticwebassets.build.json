@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "f9U7dQh4GnsUhP2WksdU/2AMxta/bnNqiHbhIhlYVYI=",
+  "Hash": "Ytgoh6sKzoqO+qepE0Na0OU5v2Uu2QL5yjxHh9vNPD0=",
   "Source": "ScientificArticleSimplifier",
   "BasePath": "_content/ScientificArticleSimplifier",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "49hycpxw4g",
-      "Integrity": "2CtDEDiXpKI7hzuTGTCJsYYoDiVUzQucqbRqUDK+uA4=",
+      "Fingerprint": "9j5lip68f3",
+      "Integrity": "RcU9z39xOjhpr99BUXP0j0yykWdCLe+6138X4A+1XvM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -2697,7 +2697,7 @@
       ]
     },
     {
-      "Route": "css/site.49hycpxw4g.css",
+      "Route": "css/site.9j5lip68f3.css",
       "AssetFile": "C:\\dev\\Estudo de MVC core\\ScientificArticleSimplifier\\ScientificArticleSimplifier\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2707,7 +2707,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3649"
+          "Value": "3130"
         },
         {
           "Name": "Content-Type",
@@ -2715,11 +2715,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"2CtDEDiXpKI7hzuTGTCJsYYoDiVUzQucqbRqUDK+uA4=\""
+          "Value": "\"RcU9z39xOjhpr99BUXP0j0yykWdCLe+6138X4A+1XvM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 12 Dec 2024 20:25:00 GMT"
+          "Value": "Sat, 14 Dec 2024 19:48:26 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2729,7 +2729,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "49hycpxw4g"
+          "Value": "9j5lip68f3"
         },
         {
           "Name": "label",
@@ -2737,7 +2737,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-2CtDEDiXpKI7hzuTGTCJsYYoDiVUzQucqbRqUDK+uA4="
+          "Value": "sha256-RcU9z39xOjhpr99BUXP0j0yykWdCLe+6138X4A+1XvM="
         }
       ]
     },
@@ -2752,7 +2752,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3649"
+          "Value": "3130"
         },
         {
           "Name": "Content-Type",
@@ -2760,11 +2760,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"2CtDEDiXpKI7hzuTGTCJsYYoDiVUzQucqbRqUDK+uA4=\""
+          "Value": "\"RcU9z39xOjhpr99BUXP0j0yykWdCLe+6138X4A+1XvM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 12 Dec 2024 20:25:00 GMT"
+          "Value": "Sat, 14 Dec 2024 19:48:26 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2774,7 +2774,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-2CtDEDiXpKI7hzuTGTCJsYYoDiVUzQucqbRqUDK+uA4="
+          "Value": "sha256-RcU9z39xOjhpr99BUXP0j0yykWdCLe+6138X4A+1XvM="
         }
       ]
     },

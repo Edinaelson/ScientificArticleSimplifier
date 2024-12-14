@@ -1,5 +1,8 @@
+/* Ajustes gerais */
 html {
     font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -8,78 +11,61 @@ html {
     }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
-}
-
 body {
     margin-bottom: 60px;
 }
 
-
+/* Campos de formulário */
 .form-control {
-    /* /border: none; /* Remove bordas padr�o */
-    border-bottom: 1px solid #cccccc;/* Adiciona apenas a borda inferior */
     border: 1px solid #cccccc;
-    border-radius: 20px; /* Remove bordas arredondadas */
-    outline: none;  /* Remove o contorno padr�o */
-    box-shadow: none; /* Remove sombras padr�o */
-    transition: border-color 0.3s ease; /* Efeito suave na mudan�a de cor */
+    border-radius: 20px;
+    outline: none;
+    box-shadow: none;
+    transition: border-color 0.3s ease;
 }
 
 .form-control:focus {
-    border-color: #007bff; /* Cor da borda inferior no foco */
-    outline: none; /* Garante que o contorno padr�o seja removido */
-    -webkit-box-shadow: none; /* Remove sombras para navegadores baseados no WebKit */
-    box-shadow: none; /* Remove sombras para outros navegadores */
+    border-color: #007bff;
+    outline: none;
+    box-shadow: none;
 }
 
+/* Feedback visual */
 #postTitleFeedback, #postDescriptionFeedback, #postContentFeedback {
     position: fixed;
-    top: 20px; /* Dist�ncia do topo */
+    top: 20px;
     left: 50%;
-    transform: translateX(-50%); /* Centraliza horizontalmente */
-    z-index: 1050; /* Garante que o feedback fique sobre outros elementos */
-    font-size: 1rem; /* Ajuste o tamanho da fonte conforme necess�rio */
-    background-color: rgba(40, 167, 69, 0.9); /* Cor de fundo verde forte */
-    color: white; /* Cor do texto branco */
+    transform: translateX(-50%);
+    z-index: 1050;
+    font-size: 1rem;
+    background-color: rgba(40, 167, 69, 0.9);
+    color: white;
     padding: 10px 20px;
     border-radius: 5px;
     display: none;
 }
 
-
+/* Campo de busca */
 #postSearch {
-    width: 300px; /* Defina o tamanho do input como necess�rio */
-    text-align: center; /* Centraliza o texto dentro do input */
+    width: 100%; /* Adaptação para dispositivos menores */
+    text-align: center;
     border: none;
-    border-bottom: 1px solid #cccccc; /* Adiciona apenas a borda inferior */
-    border-radius: 0px;
-    border-color: #667eea; /* Cor da borda inferior no foco */
-    outline: none; /* Garante que o contorno padr�o seja removido */
-    -webkit-box-shadow: none; /* Remove sombras para navegadores baseados no WebKit */
-    box-shadow: none; /* Remove sombras para outros navegadores */
+    border-bottom: 1px solid #cccccc;
+    outline: none;
+    box-shadow: none;
 }
 
+/* Texto com gradiente */
 .gradient-custom {
-    /* fallback for old browsers */
-    color: #667eea;
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(102,126,234,0.7), rgba(118,75,162,0.7));
+    background: linear-gradient(to right, rgba(102, 126, 234, 0.7), rgba(118, 75, 162, 0.7));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-
 /* Estilos gerais para telas maiores */
 @media (min-width: 992px) {
     .container-fluid {
-        padding: 2rem 5rem; /* Aumenta a margem para telas grandes */
+        padding: 2rem 5rem;
     }
 
     h5 {
@@ -87,7 +73,7 @@ body {
     }
 
     textarea {
-        min-height: 100px;
+        min-height: 120px;
     }
 
     .btn {
@@ -114,23 +100,57 @@ body {
 
 /* Ajustes para telas menores */
 @media (max-width: 767px) {
+    html {
+        font-size: 13px; /* Reduz o tamanho base */
+    }
+
     h5 {
         font-size: 1.2rem;
         text-align: center;
     }
 
     .btn {
-        width: 100%; /* Botões em largura total */
+        width: 100%;
         margin-top: 10px;
     }
 
-    textarea {
-        min-height: 120px;
+    .container-fluid {
+        padding: 1rem;
+    }
+
+    #postSearch {
+        width: 100%;
+        font-size: 1rem;
     }
 
     .spinner-grow {
         width: 2rem;
-        height: 2rem; /* Spinner menor */
+        height: 2rem;
     }
 }
 
+/* Ajustes específicos para a área do textarea e botão */
+textarea.form-control {
+    flex-grow: 1;
+    resize: vertical; /* Permite redimensionar apenas na vertical */
+}
+
+.d-flex textarea {
+    margin-right: 10px; /* Espaço entre o textarea e o botão */
+}
+
+@media (max-width: 767px) {
+    .d-flex {
+        flex-direction: column; /* Empilha o textarea e o botão */
+        align-items: stretch;
+    }
+
+    .d-flex textarea {
+        margin-right: 0; /* Remove margem lateral no empilhamento */
+        margin-bottom: 10px; /* Espaço entre textarea e botão */
+    }
+
+    #copyButton {
+        width: 100%; /* Botão em largura total no celular */
+    }
+}

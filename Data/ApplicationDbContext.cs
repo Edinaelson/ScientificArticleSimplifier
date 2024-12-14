@@ -4,15 +4,8 @@ using ScientificArticleSimplifier.Models;
 
 namespace ScientificArticleSimplifier.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext(options)
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
-
         public DbSet<Post> Posts { get; set; }
-        public DbSet<Request> Requests { get; set; }
-        public DbSet<User> Users { get; set; }
     }
 }

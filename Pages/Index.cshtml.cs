@@ -22,7 +22,6 @@ namespace ScientificArticleSimplifier.Pages
 
         public IActionResult OnGet()
         {
-            ViewData["RequestId"] = new SelectList(_context.Requests, "Id", "Id");
             return Page();
         }
 
