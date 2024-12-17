@@ -289,3 +289,4 @@ C:\dev\Estudo de MVC core\ScientificArticleSimplifier\ScientificArticleSimplifie
 C:\dev\Estudo de MVC core\ScientificArticleSimplifier\ScientificArticleSimplifier\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\dev\Estudo de MVC core\ScientificArticleSimplifier\ScientificArticleSimplifier\obj\Debug\net8.0\staticwebassets\msbuild.ScientificArticleSimplifier.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 C:\dev\Estudo de MVC core\ScientificArticleSimplifier\ScientificArticleSimplifier\obj\Debug\net8.0\Scientif.D11C7D5B.Up2Date
+C:\dev\Estudo de MVC core\ScientificArticleSimplifier\ScientificArticleSimplifier\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

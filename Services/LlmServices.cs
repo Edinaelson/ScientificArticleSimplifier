@@ -8,7 +8,7 @@ namespace ScientificArticleSimplifier.Services
     {
         public static async Task<string> GenerateContentAsync(string question)
         {
-            var apiKey = File.ReadAllText($"C:/dev/Estudo de MVC core/ScientificArticleSimplifier/apiGoogle.txt");
+            var apiKey = "AIzaSyBhRp5Rr-XhVTfRlxDLQwSzUYrfSxJao8E";//File.ReadAllText($"C:/dev/Estudo de MVC core/ScientificArticleSimplifier/apiGoogle.txt");
             using var httpClient = new HttpClient();
 
             var reader = File.ReadAllText("./Prompts/Prompt.txt")??"";
@@ -21,14 +21,14 @@ namespace ScientificArticleSimplifier.Services
             {
                 contents = new[]
                 {
-                new
-                {
-                    parts = new[]
+                    new
                     {
-                        new { text = prompt }
+                        parts = new[]
+                        {
+                            new { text = prompt }
+                        }
                     }
                 }
-            }
             };
 
             var json = JsonSerializer.Serialize(requestBody);
