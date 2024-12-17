@@ -3,7 +3,7 @@ services:
     container_name: api
     restart: always
     ports:
-      - 7007:5033
+      - 7007:8080
     build:
       context: ./
       dockerfile: ./Dockerfile
