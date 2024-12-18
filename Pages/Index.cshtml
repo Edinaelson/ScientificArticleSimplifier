@@ -109,13 +109,14 @@
     let editorInstance;
 
     // Vincula a função ao botão de exportação PDF
-    const btnPdf = document.querySelector("button[onclick='salvarPdf()']");
+    /** const btnPdf = document.querySelector("button[onclick='salvarPdf()']");
     if (btnPdf) {
         console.log("Botão de exportação encontrado!");
         btnPdf.addEventListener('click', salvarPdf);
     } else {
         console.log("Botão de exportação não encontrado.");
     }
+     **/
 
     // Executa a função ao mudar o título
     titleInput.addEventListener('change', fetchDescriptionAndContent);
@@ -132,48 +133,49 @@
 
 
         // Função para exportar o conteúdo como PDF
-        async function salvarPdf() {
-            // Captura os valores dos campos de entrada
-            const title = document.getElementById('postTitle').value;
-            const description = document.getElementById('postDescription').value;
-            const content = document.getElementById('postContent').value;
+    console.log("Função salvarPdf carregada!");
+    async function salvarPdf() {
+        // Captura os valores dos campos de entrada
+        const title = document.getElementById('postTitle').value;
+        const description = document.getElementById('postDescription').value;
+        const content = document.getElementById('postContent').value;
 
-            // Verifica se os dados estão preenchidos
-            if (!title || !description || !content) {
-                alert("Todos os campos (Título, Descrição e Conteúdo) devem ser preenchidos antes de exportar!");
-                return;
-            }
-
-            console.log("Título:", title);
-            console.log("Descrição:", description);
-            console.log("Conteúdo:", content);
-
-            // Criar um documento PDF
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-
-            // Adicionar título ao PDF
-            doc.setFontSize(18);
-            doc.text(title, 10, 20);
-
-            // Adicionar descrição ao PDF
-            doc.setFontSize(14);
-            doc.text("Descrição:", 10, 40);
-            doc.setFontSize(12);
-            doc.text(description, 10, 50);
-
-            // Adicionar conteúdo ao PDF
-            doc.setFontSize(14);
-            doc.text("Conteúdo:", 10, 70);
-            doc.setFontSize(12);
-
-            // Quebra automática de linhas para o conteúdo longo
-            const contentLines = doc.splitTextToSize(content, 180); // Ajuste a largura das linhas
-            doc.text(contentLines, 10, 80);
-
-            // Salvar o PDF com um nome padrão
-            doc.save('postagem.pdf');
+        // Verifica se os dados estão preenchidos
+        if (!title || !description || !content) {
+            alert("Todos os campos (Título, Descrição e Conteúdo) devem ser preenchidos antes de exportar!");
+            return;
         }
+
+        console.log("Título:", title);
+        console.log("Descrição:", description);
+        console.log("Conteúdo:", content);
+
+        // Criar um documento PDF
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Adicionar título ao PDF
+        doc.setFontSize(18);
+        doc.text(title, 10, 20);
+
+        // Adicionar descrição ao PDF
+        doc.setFontSize(14);
+        doc.text("Descrição:", 10, 40);
+        doc.setFontSize(12);
+        doc.text(description, 10, 50);
+
+        // Adicionar conteúdo ao PDF
+        doc.setFontSize(14);
+        doc.text("Conteúdo:", 10, 70);
+        doc.setFontSize(12);
+
+        // Quebra automática de linhas para o conteúdo longo
+        const contentLines = doc.splitTextToSize(content, 180); // Ajuste a largura das linhas
+        doc.text(contentLines, 10, 80);
+
+        // Salvar o PDF com um nome padrão
+        doc.save(title + '.pdf');
+    }
 
     function copyToClipboard(fieldId) {
         const field = document.getElementById(fieldId);
