@@ -153,16 +153,18 @@
         // Criar um documento PDF
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
+        const maxWidth = 180;
+        const splitDescription = doc.splitTextToSize(description, maxWidth);
 
         // Adicionar título ao PDF
         doc.setFontSize(18);
         doc.text(title, 10, 20);
 
         // Adicionar descrição ao PDF
-        doc.setFontSize(14);
+        //doc.setFontSize(14);
         doc.text("Descrição:", 10, 40);
         doc.setFontSize(12);
-        doc.text(description, 10, 50);
+        doc.text(splitDescription, 10, 50);
 
         // Adicionar conteúdo ao PDF
         doc.setFontSize(14);
